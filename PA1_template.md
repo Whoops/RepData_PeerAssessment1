@@ -1,19 +1,22 @@
 # Reproducible Research: Peer Assessment 1
 
-```{r setoption, echo=TRUE}
+
+```r
 opts_chunk$set(echo=TRUE)
 ```
 
 ## Loading and preprocessing the data
 
-```{r}
+
+```r
 file <- unz("activity.zip", "activity.csv")
 data <- read.csv(file)
 ```
 
 ## What is mean total number of steps taken per day?
 
-```{r}
+
+```r
   #Ignore missing values
   nona <- na.omit(data)
   daily <- with(nona, aggregate(steps, list(date), sum))
@@ -21,9 +24,23 @@ data <- read.csv(file)
   hist(daily$steps, main="Steps per day", xlab="Steps", ylab="Days")
 ```
 
-```{r}
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+
+```r
   mean(daily$steps, na.rm = TRUE)
+```
+
+```
+## [1] 10766
+```
+
+```r
   median(daily$steps, na.rm = TRUE)
+```
+
+```
+## [1] 10765
 ```
 
 
