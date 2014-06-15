@@ -54,7 +54,7 @@ data <- read.csv(file)
 ### What is the distribution of activity throughout the average day?
 
 ```r
-  byInterval <- with(nona, aggregate(steps, list(interval), sum))
+  byInterval <- with(nona, aggregate(steps, list(interval), mean))
   names(byInterval) <- c("interval", "steps")
   plot(byInterval, type="l")
 ```
@@ -153,7 +153,7 @@ data <- read.csv(file)
   data$date <- as.Date(data$date)
   isWeekend <- as.factor(ifelse(weekdays(data$date) == "Sunday" | weekdays(data$date) == "Saturday", "Weekend", "Weekday"))
   data <- cbind(data, isWeekend)
-  byInterval <- with(data, aggregate(steps, list(interval, isWeekend), sum))
+  byInterval <- with(data, aggregate(steps, list(interval, isWeekend), mean))
   names(byInterval) <- c("interval", "isWeekend", "steps")
   qplot(interval, steps, data=byInterval, facets= isWeekend ~ ., geom=c("line"))
 ```
